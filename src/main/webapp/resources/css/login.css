@@ -1,0 +1,126 @@
+:root{
+  --card-border: #a9a6e8;
+  --logo-cyan: #5fd8e0;
+  --accent-lime: #c7e84e;
+  --accent-lavender: #b3aef2;
+  --bg: #ffffff;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--bg);
+  font-family: "Pretendard", "Segoe UI", sans-serif;
+}
+
+.login-card{
+  position:relative;
+  width: 380px;
+  padding: 48px 36px 40px;
+  border: 3px solid var(--card-border);
+  border-radius: 48px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 28px;
+}
+
+.logo-wrap{
+  align-self:flex-start;
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap: 4px;
+}
+.logo-text{
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--logo-cyan);
+  line-height:1;
+}
+.sparkle{ display:block; }
+.sparkle.lg{ width:22px; height:22px; margin-top:-6px; }
+.sparkle.sm{ width:14px; height:14px; margin-top:14px; margin-left:-10px; }
+
+.field{ width:100%; }
+.field-box{
+  width:100%;
+  border: 2px solid var(--card-border);
+  border-radius: 999px;
+  padding: 14px 22px;
+}
+.field-label{
+  font-size: 15px;
+  color: var(--accent-lime);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.field-input{
+  border:none;
+  outline:none;
+  background:transparent;
+  width:100%;
+  font-size: 15px;
+  color:#333;
+  margin-top: 2px;
+}
+.field-input::placeholder{ color:#c9c9c9; }
+
+.star-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  margin-top: 4px;
+}
+
+/* 버튼 크게 */
+.star-btn{
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:0;
+  width: 96px;
+  height: 122px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.star-btn:focus-visible svg path{ stroke: #333; }
+
+.star-btn svg{
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+}
+
+.star-label{
+  position:relative;
+  z-index:2;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align:center;
+  width: 56px;
+  color:#fff;
+}
+
+.star-btn.signin svg path{ fill:none; stroke: var(--accent-lavender); stroke-width:2.5; }
+.star-btn.signin .star-label{ color: var(--accent-lavender); }
+
+.star-btn.forgot svg path{ fill:none; stroke: var(--accent-lime); stroke-width:2.5; }
+.star-btn.forgot .star-label{ color: var(--accent-lime); }
+
+.star-btn.signup svg path{ fill:none; stroke: var(--accent-lime); stroke-width:2.5; }
+.star-btn.signup .star-label{ color: var(--accent-lime); }
+
+.star-btn:hover svg path{ filter: brightness(1.15); }
+.star-btn:active{ transform: scale(0.96); }
