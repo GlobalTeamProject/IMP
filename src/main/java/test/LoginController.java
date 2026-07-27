@@ -10,4 +10,10 @@ public class LoginController {
     public String loginPage() {
         return "login";  // WEB-INF/views/login.jsp 를 찾아감
     }
+    
+    @RequestMapping("/signup")
+    public String signupPage() {
+        return "signup";
+    }
+    
 }
