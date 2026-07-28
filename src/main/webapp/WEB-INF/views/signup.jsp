@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <title>IMP Sign Up</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signup.css">
+<!-- 자바스크립트(유효성검사 해당) -->
+<script src ="signUpjs3.js"></script> 
+<!-- 다음 우편번호찾기 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
@@ -21,7 +24,7 @@
       <div class="field-box">
         <div class="field-label">ID:</div>
         <div class="address-row">
-          <input class="field-input addr-input" type="text" name="userId" placeholder="아이디를 입력하세요" />
+          <input class="field-input addr-input" type="text" name="userId" placeholder="아이디를 입력하세요" maxlength="12"/>
           <button type="button" class="addr-btn">아이디 중복 검사</button>
         </div>
       </div>
@@ -30,42 +33,35 @@
     <div class="field">
       <div class="field-box">
         <div class="field-label">PW:</div>
-        <input class="field-input" type="password" name="userPw" placeholder="비밀번호를 입력하세요" />
+        <input class="field-input" type="password" name="userPw" placeholder="비밀번호를 입력하세요" maxlength="12"/>
       </div>
     </div>
 
     <div class="field">
       <div class="field-box">
         <div class="field-label">CONFIRM PW:</div>
-        <input class="field-input" type="password" name="confirmPw" placeholder="비밀번호를 다시 입력하세요" />
+        <input class="field-input" type="password" name="confirmPw" placeholder="비밀번호를 다시 입력하세요" maxlength="12"/>
       </div>
     </div>
 
     <div class="field">
       <div class="field-box">
         <div class="field-label">NAME:</div>
-        <input class="field-input" type="text" name="userName" placeholder="이름을 입력하세요" />
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="field-box">
-        <div class="field-label">BIRTHDAY:</div>
-        <input class="field-input" type="date" name="birthday" />
+        <input class="field-input" type="text" name="userName" placeholder="이름을 입력하세요" maxlength="9"/>
       </div>
     </div>
     
     <div class="field">
       <div class="field-box">
         <div class="field-label">PHONENUMBER:</div>
-        <input class="field-input" type="text" name="phoneNumber" placeholder="010-0000-0000" />
+        <input class="field-input" type="text" name="phoneNumber" placeholder="010-0000-0000" maxlength="11"/>
       </div>
     </div>
     
     <div class="field">
       <div class="field-box">
         <div class="field-label">EMAIL:</div>
-        <input class="field-input" type="text" name="emailId" placeholder="이메일을 입력하세요" />
+        <input class="field-input" type="text" name="emailId" placeholder="이메일을 입력하세요" class="check"/>
       </div>
     </div>
 
@@ -90,7 +86,7 @@
     <div class="field">
       <div class="field-box">
       <div class="field-label">ADDRESS DETAIL:</div>
-        <input class="field-input" type="text" name="addressDetail" placeholder="상세 주소" />
+        <input class="field-input" type="text" name="addressDetail" placeholder="상세 주소" maxlength="11"/>
       </div>
     </div>
     <div class="btn-row">
@@ -103,12 +99,30 @@
         <span class="star-label">SIGN UP</span>
       </button>
     </div>
+    <script>
+    function sample4_execDaumPostcode(){
+    	new daum.Postcode({
+    		oncomplete:function(data){
+    			//우편번호
+    			document.getElementById('sample4_postcode').value = data.zonecode;
+    			//도로명주소
+    			document.getElementById('sample4_roadAddress').value=data.roadAddress;
+    			 // 참고항목(동/건물명 등) 채우기
+                var extraAddress = ''; // 참고항목을 담을 빈 상자,처음에는 비어있음 
+                if (data.userSelectedType === 'R') { //도로명주소 선택
+                    if (data.bname !== '') extraAddress += data.bname;
+                    if (data.buildingName !== '') {//건물이름
+                        extraAddress += (extraAddress !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                }
+                document.getElementById('sample4_extraAddress').value = extraAddress;//완성된 참고 항목
+            }
+        }).open();
+    }
+    </script>
+    
   </form>
-<script>
-function sample4_execDaumPostcode() {
-    //검색을 통한 프로그램 개발 ^^
-}
-</script>
+
 
 </body>
 </html>
