@@ -9,17 +9,20 @@
 
 	function member_sign() {
 		
-		var userId = document.getElementById('userId').value;
-		var userPw = document.getElementById('userPw').value;
+		var userId = document.getElementById('userId').value.trim();
+		var userPw = document.getElementById('userPw').value.trim();
 		
 		if(userId == '' || userPw == '')
 			alert("ID/PW 입력해주세요.");
 			event.preventDefault();
+			return false;
 		else
 		{
 			//1. 데이터 유무 확인
 			alert("데이터 유무 확인 부분");
 			//2. 멤버 코드를 보내고  buyer 부분 seller 부분 연결하기
+			
+			return true;
 		}
 			
 		
@@ -28,7 +31,7 @@
 </head>
 <body>
 
-  <form class="login-card" action="${pageContext.request.contextPath}/login" method="post">
+  <form class="login-card" action="${pageContext.request.contextPath}/login" method="post" onsubmit="return member_sign(event);">
 
     <div class="logo-wrap">
       <span class="logo-text">IMP</span>

@@ -1,4 +1,4 @@
-package test;
+package test.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import test.mapper.MemberDTO;
+import test.service.MemberService;
+
 
 
 @Controller
 public class LoginController {
 
+	@Autowired
+    private MemberService memberService;
 	
 /* @RequestMapping은 Class와 Method에 붙일 수 있고 @GetMapping, @PostMapping, @PutMapping, @DeleteMapping들은 Method에만 붙일 수 있다.*/
     @RequestMapping("/login")
@@ -45,23 +50,18 @@ public class LoginController {
     	
     	
     	
-		/*
-		 * int memCode = memberService.loginCheck(userId, userPw); if (memCode <= 0) {
-		 * model.addAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다."); return "login"; //
-		 * 로그인 실패 시 다시 로그인 페이지로 }
-		 */
     	
+	    	// Service를 통해 DB 검증 및 회원 정보(memCode 포함) 가져오기
+	        MemberDTO member = memberService.authenticate(userId, userPw);
+	        
+	        if (member == null) {
+	            model.addAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다."); 
+	            return "login"; // 다시 로그인 페이지로 리턴 
+	        }
+	        
+	        int memCode = member.getMemCode();
     	
-    	
-		
-		  int memCode = 1;
-		  boolean isLoginSuccess = true;
-		  
-		  if (!isLoginSuccess) 
-		  {
-			  model.addAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다."); 
-			  return "login"; // 다시 로그인 페이지로 리턴 
-		  }
+		 
 		
         
 	        // MEM_CODE에 따른 페이지 분리
