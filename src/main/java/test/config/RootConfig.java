@@ -38,10 +38,10 @@ public class RootConfig implements WebMvcConfigurer {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         
-        // 경로 앞에 classpath*: 로 하거나 실제 폴더가 있는지 꼭 확인하세요!
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/test/mapper/*.xml"));
+        // ★ 현재 파일 구조(webapp/resources/test/mapper)를 정확히 바라보도록 설정
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/test/mapper/*.xml"));
         
-        return bean.getObject(); // ★ 핵심: bean이 아니라 bean.getObject()를 리턴해야 합니다!
+        return bean.getObject(); 
     }
 
     // 3. SqlSessionTemplate
