@@ -17,11 +17,12 @@ public class MemberService {
      * 로그인 검증 메서드
      * @return 성공 시 MemberDTO (memCode 포함), 실패 시 null
      */
-    public MemberDTO authenticate(String userId, String userPw) {
+    public MemberDTO authenticate(String userId, String userPws) {
         MemberDTO member = memberMapper.loginCheck(userId);
 
         // 아이디가 존재하지 않거나 비밀번호가 틀린 경우
-        if (member == null || !member.getMemPw().equals(userPw)) {
+        if (member == null || !member.getMemPw().equals(userPws)) {
+        	
             return null; 
         }
 

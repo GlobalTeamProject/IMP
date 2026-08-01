@@ -1,5 +1,10 @@
 package test.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +23,8 @@ public class LoginController {
 
 	@Autowired
     private MemberService memberService;
+	
+	
 	
 /* @RequestMapping은 Class와 Method에 붙일 수 있고 @GetMapping, @PostMapping, @PutMapping, @DeleteMapping들은 Method에만 붙일 수 있다.*/
     @RequestMapping("/login")
@@ -42,10 +49,15 @@ public class LoginController {
     public String sellerPage() {
         return "sellerpage"; // sellerpage.jsp 를 보여줌
     }
+    @GetMapping("/productRegistration")
+    public String productRegistrationPage() {
+        return "productRegistration"; // sellerpage.jsp 를 보여줌
+    }
     @PostMapping("/login")
     public String loginProcess(@RequestParam("userId") String userId, 
                                @RequestParam("userPw") String userPw, 
-                               Model model) {
+                               Model model,
+                               HttpServletResponse response) throws IOException {
     	
     	
     	
@@ -55,8 +67,17 @@ public class LoginController {
 	        MemberDTO member = memberService.authenticate(userId, userPw);
 	        
 	        if (member == null) {
-	            model.addAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다."); 
-	            return "login"; // 다시 로그인 페이지로 리턴 
+	        	response.setContentType("text/html; charset=utf-8");
+	        	response.setCharacterEncoding("utf-8");
+
+	        	PrintWriter out = response.getWriter();
+
+	        	out.println("<script>alert('Forgot ur id or password 테스트');");
+	        	out.println("history.go(-1);</script>");
+	        	//model.addAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다."); 
+	        	out.close();
+	        		
+	        	return "login"; // 다시 로그인 페이지로 리턴 
 	        }
 	        
 	        int memCode = member.getMemCode();

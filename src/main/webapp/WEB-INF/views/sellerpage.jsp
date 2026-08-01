@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <title>IMP Seller Page</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sellerpage.css" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sellerpage.css" />
  </head>
-
 <body>
 <section class="page-shell active" id="seller-page">
     <div class="page-header">
@@ -19,7 +19,7 @@
       </div>
       <div class="nav-circles">
         <a href="${pageContext.request.contextPath}/seller" class="nav-circle c-lavender">Buyer<br>Page</a>
-        <a href="#" class="nav-circle c-lime">Create<br>Listing</a>
+        <a href="${pageContext.request.contextPath}/productRegistration" class="nav-circle c-lime">Product<br>Registration</a>
         <a href="#" class="nav-circle c-cyan">My<br>Page</a>
       </div>
     </div>

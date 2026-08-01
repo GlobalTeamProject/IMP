@@ -13,17 +13,13 @@
 		var userPw = document.getElementById('userPw').value.trim();
 		
 		if(userId == '' || userPw == '')
+		{
 			alert("ID/PW 입력해주세요.");
 			event.preventDefault();
 			return false;
-		else
-		{
-			//1. 데이터 유무 확인
-			alert("데이터 유무 확인 부분");
-			//2. 멤버 코드를 보내고  buyer 부분 seller 부분 연결하기
-			
+		}else
 			return true;
-		}
+		
 			
 		
 	}
@@ -54,7 +50,7 @@
     </div>
 
     <div class="star-row">
-      <button type="submit" class="star-btn signin" aria-label="Sign In" onclick="member_sign()">
+      <button type="submit" class="star-btn signin" aria-label="Sign In" >
         <svg viewBox="0 0 76 96" preserveAspectRatio="none"><path d="M38 2 C40 34 42 46 74 48 C42 50 40 62 38 94 C36 62 34 50 2 48 C34 46 36 34 38 2 Z"/></svg>
         <span class="star-label">Login</span>
       </button>
