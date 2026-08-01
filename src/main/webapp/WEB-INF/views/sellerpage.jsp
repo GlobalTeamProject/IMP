@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>IMP Seller Page</title>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sellerpage.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sellerpage.css" />
  </head>
 <body>
 <section class="page-shell active" id="seller-page">
