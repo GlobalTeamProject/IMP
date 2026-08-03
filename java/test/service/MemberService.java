@@ -28,4 +28,9 @@ public class MemberService {
 
         return member; // 로그인 성공 시 회원 정보 반환
     }
+ // 아이디중복체크
+    public int idCheck(String userId) {
+        return memberMapper.idCheck(userId);
+  }
+
 }

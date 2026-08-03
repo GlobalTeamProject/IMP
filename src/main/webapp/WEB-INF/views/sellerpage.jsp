@@ -18,7 +18,7 @@
         </span>
       </div>
       <div class="nav-circles">
-        <a href="${pageContext.request.contextPath}/seller" class="nav-circle c-lavender">Buyer<br>Page</a>
+        <a href="${pageContext.request.contextPath}/buyer" class="nav-circle c-lavender">Buyer<br>Page</a>
         <a href="${pageContext.request.contextPath}/productRegistration" class="nav-circle c-lime">Product<br>Registration</a>
         <a href="#" class="nav-circle c-cyan">My<br>Page</a>
       </div>

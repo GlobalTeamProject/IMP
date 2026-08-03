@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import test.mapper.MemberDTO;
 import test.service.MemberService;
 
@@ -25,7 +25,6 @@ public class LoginController {
     private MemberService memberService;
 	
 	
-	
 /* @RequestMapping은 Class와 Method에 붙일 수 있고 @GetMapping, @PostMapping, @PutMapping, @DeleteMapping들은 Method에만 붙일 수 있다.*/
     @RequestMapping("/login")
     public String loginPage() {
@@ -36,6 +35,15 @@ public class LoginController {
     public String signupPage() {
         return "signup";
     }
+    /*로그인 체크 */
+    @ResponseBody
+    @GetMapping("/idCheck.me")
+    public String idCheck(String userId){
+        int result = memberService.idCheck(userId); // 아이디가 존재한다면 1, 없다면 0
+        return result + ""; // 비동기방법으로 보낼때는 항상 문자열 데이터만 전달할 수 있다!!
+    }
+
+    
     
    /*@GetMapping("/buyer")	그냥 buyer 페이지 화면을 보여줄 때
      @PostMapping("/login")	로그인 폼처럼 데이터를 제출,전송할 때*/
