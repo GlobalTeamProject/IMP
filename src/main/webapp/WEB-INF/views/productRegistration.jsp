@@ -44,7 +44,8 @@
 		if (!product_price || !product_name || !product_des || !product_qty || !product_code || !product_picture) {
 	        alert('Enter Information'); 
 	        return false;
-	    }
+	    }else
+	    	return true;
 	}
 	//숫자형식 변경하는 로직
 	function formatNumber(target) {

@@ -71,5 +71,11 @@
         <artifactId>spring-jdbc</artifactId>
         <version>4.3.30.RELEASE</version>
     </dependency>
+    <!-- Apache Commons FileUpload -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.4</version> <!-- 또는 사용하는 프로젝트 버전에 맞는 버전 -->
+	</dependency>
   </dependencies>
 </project>

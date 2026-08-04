@@ -17,14 +17,14 @@
         ) VALUES (
             <!-- #{PRODUCT_ID} -->
             'TEST001'
-            ,#{PRODUCT_NAME}
-            ,#{PRODUCT_DES}
-            ,#{PRODUCT_PRICE}
-            ,#{PRODUCT_QTY}
-            ,#{PRODUCT_CODE}
-            ,'TEST'
-            ,'1'
-            ,#{PRODUCT_PICTURE}
+            ,#{product_name}
+            ,#{product_des}
+            ,#{product_price}
+            ,#{product_qty}
+            ,#{product_code}
+            ,#{memId}
+            ,#{memCode}
+            ,#{product_price}
 
         )
     </insert>

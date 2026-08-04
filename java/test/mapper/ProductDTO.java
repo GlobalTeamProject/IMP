@@ -9,7 +9,8 @@ public class ProductDTO {
 	private int product_qty;
 	private String product_des;
 	private String product_code;
-	private MultipartFile product_picture;
+	private String product_picture;
+	private MultipartFile file;
 	private int memCode;
 	private String memId;
 	
@@ -57,12 +58,15 @@ public class ProductDTO {
 	public void setProduct_code(String product_code) {
 		this.product_code = product_code;
 	}
-	public MultipartFile getProduct_picture() {
-		return product_picture;
+	 public void setProduct_picture(String product_picture) {
+	    this.product_picture = product_picture;
 	}
-	public void setProduct_picture(MultipartFile product_picture) {
-		this.product_picture = product_picture;
-	}
+    public void setProduct_picture(MultipartFile file) {
+        this.file = file;
+    }
+    public MultipartFile getProduct_picture() {
+        return this.file;
+    }
 	
 	
 	

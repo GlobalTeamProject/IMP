@@ -64,4 +64,13 @@ public class RootConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
+    // 6. 파일 업로드를 위한 MultipartResolver 빈 등록
+    @Bean
+    public org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver() {
+        org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(10485760); // 최대 파일 크기 (10MB)
+        multipartResolver.setMaxUploadSizePerFile(10485760); // 파일당 최대 크기 (10MB)
+        multipartResolver.setDefaultEncoding("UTF-8");
+        return multipartResolver;
+    }
 }
