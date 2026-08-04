@@ -83,7 +83,7 @@
             <div class="preview-section">
                 <div class="image-preview-box" id="imagePreviewBox">
                     <div class="preview-placeholder-content">
-                        <img id="preview_image" alt="Preview image" style="width: 300px; margin-top: 10px;" src="">
+                        <img id="preview_image" alt="Preview image" style="width: 400px; margin-top: 10px; height: 300px;" src="">
                     </div>
                 </div>
                 <div class="text-info-area">

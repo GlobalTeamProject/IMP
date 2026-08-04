@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.mapper.ProductMapper">
+	<insert id="insertProduct" parameterType="test.mapper.ProductDTO">
+        INSERT INTO PRODUCT (
+            PRODUCT_ID
+            ,PRODUCT_NAME
+            ,PRODUCT_DES
+            ,PRODUCT_PRICE
+            ,PRODUCT_QTY
+            ,PRODUCT_CODE
+            ,MEM_ID
+            ,MEM_CODE
+            ,PRODUCT_PICTURE
+        ) VALUES (
+            <!-- #{PRODUCT_ID} -->
+            'TEST001'
+            ,#{PRODUCT_NAME}
+            ,#{PRODUCT_DES}
+            ,#{PRODUCT_PRICE}
+            ,#{PRODUCT_QTY}
+            ,#{PRODUCT_CODE}
+            ,'TEST'
+            ,'1'
+            ,#{PRODUCT_PICTURE}
+
+        )
+    </insert>
+</mapper>
