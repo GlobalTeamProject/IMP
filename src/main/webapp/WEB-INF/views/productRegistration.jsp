@@ -18,11 +18,11 @@
 	*/
 	//이미지 미리보기 화면
 	window.addEventListener('DOMContentLoaded', function() {
-	    var product_picture = document.getElementById('product_picture'); 
+	    var file = document.getElementById('file'); 
 	    var preview_image = document.getElementById('preview_image');
 
-	    if (product_picture) {
-	        product_picture.addEventListener('change', function(event) {
+	    if (file) {
+	    	file.addEventListener('change', function(event) {
 	            var file = event.target.files[0];
 	            if (file) {
 	                preview_image.src = URL.createObjectURL(file);
@@ -127,7 +127,7 @@
 
                 <div class="input-group">
                     <label for="attachmentFile">Attachment File</label>
-                    <input type="file" id="product_picture" name="product_picture" accept="image/*">
+                    <input type="file" id="file" name="file" accept="image/*">
                 </div>
             </div>
 

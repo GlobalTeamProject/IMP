@@ -59,15 +59,21 @@ public class ProductDTO {
 	public void setProduct_code(String product_code) {
 		this.product_code = product_code;
 	}
+	
+	
+	public String getProduct_picture() {
+        return product_picture;
+    }
 	 public void setProduct_picture(String product_picture) {
 	    this.product_picture = product_picture;
 	}
-    public void setProduct_picture(MultipartFile file) {
+	 public MultipartFile getFile() {
+	        return file;
+    }
+    public void setFile(MultipartFile file) {
         this.file = file;
     }
-    public MultipartFile getProduct_picture() {
-        return this.file;
-    }
+    
 	
 	
 	

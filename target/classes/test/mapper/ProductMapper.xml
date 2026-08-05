@@ -24,7 +24,7 @@
             ,#{product_code}
             ,#{memId}
             ,#{memCode}
-            ,#{product_code}
+            ,#{product_picture}
         )
     </insert>
 </mapper>

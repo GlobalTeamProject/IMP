@@ -20,7 +20,7 @@ public class ProductService {
 	public int registerProduct(ProductDTO product, String uploadPath) throws IOException {
 	        //System.out.println(product.getProduct_name());
 	        //파일 업로드 처리
-	        MultipartFile file = product.getProduct_picture();
+	        MultipartFile file = product.getFile();
 	        if (file != null && !file.isEmpty()) {
 	            String originalFileName = file.getOriginalFilename();
 	            System.out.println(file);
@@ -34,7 +34,7 @@ public class ProductService {
 	            
 	            // 2. DB에 저장할 파일 이름을 DTO의 picture 필드(String)에 셋팅
 	            // (주의: DTO의 product_picture 타입을 String으로 바꾸거나, 파일명을 담을 별도 변수가 필요할 수 있습니다)
-	            //System.out.println(savedFileName);
+	            System.out.println(savedFileName);
 	            //savedFileName = "test입니다.";
 	            product.setProduct_picture(savedFileName);
 	        }

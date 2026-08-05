@@ -32,7 +32,6 @@ public class ProductController {
     	System.out.println("--- DTO 값 확인 ---");
         System.out.println("product_name: " + product.getProduct_name());
         System.out.println("product_price: " + product.getProduct_price());
-        System.out.println("product_picture: " + product.getProduct_picture());
         System.out.println("product_picture: " + product.getProduct_qty());
         System.out.println("product_picture: " + product.getProduct_des());
         System.out.println("product_picture: " + product.getProduct_code());
