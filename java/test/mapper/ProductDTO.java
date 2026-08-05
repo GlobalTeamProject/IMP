@@ -6,21 +6,15 @@ public class ProductDTO {
 	
 	private String product_price;
 	private String product_name;
-	private int product_qty;
+	private String product_qty;
 	private String product_des;
 	private String product_code;
 	private String product_picture;
 	private MultipartFile file;
 	private int memCode;
 	private String memId;
+
 	
-	
-	public String getProduct_name() {
-		return product_name;
-	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
-	}
 	public int getMemCode() {
 		return memCode;
 	}
@@ -33,6 +27,13 @@ public class ProductDTO {
 	public void setMemId(String memId) {
 		this.memId = memId;
 	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
 	public String getProduct_price() {
 		return product_price;
 	}
@@ -40,10 +41,10 @@ public class ProductDTO {
 		this.product_price = product_price;
 	}
 
-	public int getProduct_qty() {
+	public String getProduct_qty() {
 		return product_qty;
 	}
-	public void setProduct_qty(int product_qty) {
+	public void setProduct_qty(String product_qty) {
 		this.product_qty = product_qty;
 	}
 	public String getProduct_des() {

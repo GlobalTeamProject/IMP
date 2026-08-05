@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "test") // 컨트롤러 등 컴포넌트 스캔
 @MapperScan(basePackages = "test.mapper") // 마이바티스 매퍼 스캔
+@EnableTransactionManagement
 public class RootConfig implements WebMvcConfigurer {
 
     // 1. 오라클 데이터소스
@@ -49,8 +52,12 @@ public class RootConfig implements WebMvcConfigurer {
     public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
-
-    // 4. JSP 뷰 리졸버
+    // 4. 트랜잭션 매니저 (DB 수정/삭제 작업 시 필요)
+    @Bean
+    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+    // 5. JSP 뷰 리졸버
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -59,12 +66,12 @@ public class RootConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-    // 5. 정적 자원 매핑
+    // 6. 정적 자원 매핑
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-    // 6. 파일 업로드를 위한 MultipartResolver 빈 등록
+    // 7. 파일 업로드를 위한 MultipartResolver 빈 등록
     @Bean
     public org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver() {
         org.springframework.web.multipart.commons.CommonsMultipartResolver multipartResolver = new org.springframework.web.multipart.commons.CommonsMultipartResolver();

@@ -34,7 +34,7 @@
 	});
 	//값 전부 입력 가능하게 하는 로직
 	function product_sign() {
-		var product_price = document.getElementById('product_price').value.replace(/[^0-9]/g, '').trim();
+		var product_price = document.getElementById('product_price').trim();
 		var product_name = document.getElementById('product_name').value.trim();
 		var product_qty = document.getElementById('product_qty').value.trim();
 		var product_des = document.getElementById('product_des').value.trim();

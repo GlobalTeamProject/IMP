@@ -16,7 +16,7 @@
             ,PRODUCT_PICTURE
         ) VALUES (
             <!-- #{PRODUCT_ID} -->
-            'TEST001'
+            (SELECT TO_CHAR(SYSDATE,'YYYYMMDDHHSS') || #{product_name} FROM DUAL)
             ,#{product_name}
             ,#{product_des}
             ,#{product_price}
@@ -24,8 +24,7 @@
             ,#{product_code}
             ,#{memId}
             ,#{memCode}
-            ,#{product_price}
-
+            ,#{product_code}
         )
     </insert>
 </mapper>

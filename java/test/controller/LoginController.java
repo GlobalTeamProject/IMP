@@ -2,8 +2,12 @@ package test.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +49,22 @@ public class LoginController {
     
     @PostMapping("/signup")
     public String signup(MemberDTO member) {
-    	memberService.signUp(member);
+    	
+    	try {
+    		String brokendata = member.getRoadAddress();
+			byte[] bytes =  brokendata.getBytes("ISO-8859-1");
+			
+			String fixedStr = new String(bytes, StandardCharsets.UTF_8);
+			
+			System.out.println(fixedStr);
+			
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				return null;
+			}
+    	
+    	
+    	//memberService.signUp(member);
     	
     	int memCode = member.getMemCode();
     	if(memCode == 1 ) {
@@ -83,7 +102,8 @@ public class LoginController {
     public String loginProcess(@RequestParam("memId") String memId, 
                                @RequestParam("memPw") String memPw, 
                                Model model,
-                               HttpServletResponse response) throws IOException {
+                               HttpServletResponse response,
+                               HttpServletRequest request) throws IOException {
 
     	
 	    	// Service를 통해 DB 검증 및 회원 정보(memCode 포함) 가져오기
@@ -95,7 +115,7 @@ public class LoginController {
 
 	        	PrintWriter out = response.getWriter();
 
-	        	out.println("<script>alert('Forgot ur id or password 테스트');");
+	        	out.println("<script>alert('Forgot ur id or password');");
 	        	out.println("history.go(-1);</script>");
 	        	//model.addAttribute("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다."); 
 	        	out.close();
@@ -105,6 +125,11 @@ public class LoginController {
 	        
 	        int memCode = member.getMemCode();
     	
+	        HttpSession session = request.getSession();
+	        
+	        session.setAttribute("memberId",member.getMemId());
+	        session.setAttribute("memberCode",member.getMemCode());
+	        
 		 
 		
         

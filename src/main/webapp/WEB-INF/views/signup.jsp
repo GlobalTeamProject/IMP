@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>IMP Sign Up</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signup.css">
@@ -13,7 +14,7 @@
 </head>
 <body>
 
-<form class="signup-card" action="${pageContext.request.contextPath}/signup" method="post" name="joinForm" onsubmit="return Validation();">
+<form class="signup-card" action="${pageContext.request.contextPath}/signup" method="post" name="joinForm" onsubmit="return Validation();"> 
     <div class="title-wrap">
       <span class="title-text">Sign Up</span>
 		<svg class="sparkle lg" viewBox="0 0 24 24"><path d="M12 1 L14 9 L22 11 L14 13 L12 22 L10 13 L2 11 L10 9 Z" fill="var(--accent-lime)"/></svg>
@@ -131,8 +132,9 @@
     	var uname = document.getElementById("uname");
         var number = document.getElementById("number");
         var memType =document.getElementById("memType");
+        var sample4_roadAddress = document.getElementById("sample4_roadAddress");
         
-        
+  		alert(sample4_roadAddress.value);
         
         if(!checkEngNumber(uid.value)){
     		alert("Letters and numbers only.");
