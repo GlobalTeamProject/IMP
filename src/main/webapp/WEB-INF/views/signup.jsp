@@ -90,21 +90,25 @@
       </div>
     </div>
     <div class="btn-row">
-      <button type="reset" class="star-btn" aria-label="Reset">
-        <svg viewBox="0 0 100 128" preserveAspectRatio="none"><path d="M50 2 C52 40 55 58 98 64 C55 70 52 88 50 126 C48 88 45 70 2 64 C45 58 48 40 50 2 Z"/></svg>
+    <button type="button" class="star-btn" onclick="location.href='${pageContext.request.contextPath}/login'">
+         <svg viewBox="0 0 100 128" preserveAspectRatio="none"><path d="M50 2 C52 40 55 58 98 64 C55 70 52 88 50 126 C48 88 45 70 2 64 C45 58 48 40 50 2 Z"/></svg>
+        <span class="star-label">BACK</span>
+    </button>
+    <button type="reset" class="star-btn">
+         <svg viewBox="0 0 100 128" preserveAspectRatio="none"><path d="M50 2 C52 40 55 58 98 64 C55 70 52 88 50 126 C48 88 45 70 2 64 C45 58 48 40 50 2 Z"/></svg>
         <span class="star-label">RESET</span>
-      </button>
-      <button type="submit" class="star-btn" aria-label="Sign Up">
-        <svg viewBox="0 0 100 128" preserveAspectRatio="none"><path d="M50 2 C52 40 55 58 98 64 C55 70 52 88 50 126 C48 88 45 70 2 64 C45 58 48 40 50 2 Z"/></svg>
+    </button>
+    <button type="submit" class="star-btn">
+         <svg viewBox="0 0 100 128" preserveAspectRatio="none"><path d="M50 2 C52 40 55 58 98 64 C55 70 52 88 50 126 C48 88 45 70 2 64 C45 58 48 40 50 2 Z"/></svg>
         <span class="star-label">SIGN UP</span>
-      </button>
-    </div>
+    </button>
+</div>
     <script>
     //유효성 검사 메소드
     function Validation(){
     	//변수에 저장
     	
-    	var uid = document.getElementById("uid")
+    	var uid = document.getElementById("uid");
     	var pw = document.getElementById("pw");
     	var cpw = document.getElementById("cpw");
     	var mail = document.getElementById("mail");
@@ -118,16 +122,16 @@
     	}  
 
         if(pw.value.length <4){
-        	alert("비밀번호를 4글자 이상 입력하세요.")
+        	alert("비밀번호를 4글자 이상 입력하세요.");
          	   pw.focus();
          	   return false;
             }else if(pw.value == uid.value){
-                alert("아이디와 동일한 비밀번호를 사용할 수 없습니다.")
+                alert("아이디와 동일한 비밀번호를 사용할 수 없습니다.");
                 pw.focus();
                 return false;
             }
         if(cpw.value !== pw.value){
-            alert("비밀번호와 동일하지 않습니다.")
+            alert("비밀번호와 동일하지 않습니다.");
             cpw.focus();
             return false;
         }
@@ -138,12 +142,12 @@
        	 return false;
         }else if(mail.value.indexOf("@") == -1 || mail.value.indexOf(".") == -1 || mail.value.length <=5){
         	//@가 없다는 뜻으로 -1
-            alert("잘못된 이메일 형식입니다.")
+            alert("잘못된 이메일 형식입니다.");
             mail.focus();
             return false;
         }
         if(uname.value == ""){
-       	 alert("이름을 입력하세요.")
+       	 alert("이름을 입력하세요.");
        	 uname.focus();
        	 return false;
         }else if(!checkKorEng(uname.value)){
@@ -180,6 +184,7 @@
 	    }
 	    
 	    fetch("${pageContext.request.contextPath}/idCheck.me?userId=" + uid)
+	    //유지보수의 용이성을 위해  ${pageContext.request.contextPath}를 사용한다.
 	        .then(response => response.text())
 	        .then(result => {
 	            if(result === "1"){
@@ -198,7 +203,7 @@
           var count = 0;
          for(var i=0; i<value.length; i++){
              if((value.charCodeAt(i)>=65 && value.charCodeAt(i)<=90) || (value.charCodeAt(i)>=97 && value.charCodeAt(i)<=122) || (value.charCodeAt(i)>=48 && value.charCodeAt(i)<=57)){
-                 count += 1;
+            	 count += 1;
              }
          } 
          
@@ -216,7 +221,7 @@
          for(var i=0; i<value.length; i++){
              if(value.charCodeAt(i)>=48 && value.charCodeAt(i)<=57){
             	 //즉, 48부터 57까지가 딱 숫자 0~9만 해당하는 코드번호(아스키코드) 구간
-                 count += 1;
+            	 count += 1;
              }
          }
          if(count === value.length){ //===은 타입이랑 값 둘다 일치해야함 
