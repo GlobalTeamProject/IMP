@@ -13,11 +13,20 @@
         WHERE MEM_ID = #{userId}
     </select>
 
-<!-- 아이디 중복 확인 -->
+	<!-- 아이디 중복 확인 -->
     <select id="idCheck" parameterType="string" resultType="int">
         SELECT COUNT(*)
         FROM MEM
-        WHERE MEM_ID = #{userId}
+        WHERE MEM_ID = #{memId}
     </select>
-    
+    <!-- 회원가입 -->
+     <insert id="signUp" parameterType="test.mapper.MemberDTO" >
+     INSERT INTO MEM (
+        MEM_ID, MEM_CODE, MEM_PW, MEM_NAME, MEM_TEL, MEM_EMAIL, MEM_POSTNUM, MEM_JIBUNADDRESS, MEM_ADDRESS
+    ) VALUES (
+        #{memId}, #{memCode}, #{memPw}, #{memName}, #{phoneNumber}, #{emailId}, #{postNum},#{roadAddress}, #{addressDetail}
+    )
+    </insert>
+     
+     
 </mapper>

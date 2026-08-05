@@ -9,12 +9,12 @@
 
 	function member_sign() {
 		
-		var userId = document.getElementById('userId').value.trim();
-		var userPw = document.getElementById('userPw').value.trim();
+		var userId = document.getElementById('memId').value.trim();
+		var userPw = document.getElementById('memPw').value.trim();
 		
-		if(userId == '' || userPw == '')
+		if(memId == '' || memPw == '')
 		{
-			alert("ID/PW 입력해주세요.");
+			alert("Please enter your ID and password.");
 			event.preventDefault();
 			return false;
 		}else
@@ -38,14 +38,14 @@
     <div class="field">
       <div class="field-box">
         <div class="field-label">ID:</div>
-        <input class="field-input" type="text" name="userId" id ="userId" placeholder="아이디를 입력하세요" />
+        <input class="field-input" type="text" name="memId" id ="memId" placeholder="Please enter your ID." />
       </div>
     </div>
 
     <div class="field">
       <div class="field-box">
         <div class="field-label">PW:</div>
-        <input class="field-input" type="password" name="userPw" id="userPw"  placeholder="비밀번호를 입력하세요" />
+        <input class="field-input" type="password" name="memPw" id="memPw"  placeholder="Please enter your password." />
       </div>
     </div>
 

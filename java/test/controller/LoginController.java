@@ -38,9 +38,27 @@ public class LoginController {
     /*로그인 체크 */
     @ResponseBody
     @GetMapping("/idCheck.me")
-    public String idCheck(String userId){
-        int result = memberService.idCheck(userId); // 아이디가 존재한다면 1, 없다면 0
+    public String idCheck(String memId){
+        int result = memberService.idCheck(memId); // 아이디가 존재한다면 1, 없다면 0
         return result + ""; // 비동기방법으로 보낼때는 항상 문자열 데이터만 전달할 수 있다!!
+    }
+    
+    @PostMapping("/signup")
+    public String signup(MemberDTO member) {
+    	memberService.signUp(member);
+    	
+    	int memCode = member.getMemCode();
+    	if(memCode == 1 ) {
+    		return "redirect:/buyer";
+    	}else if(memCode == 2 ) {
+    		return "redirect:/seller";
+    	}else {
+    	    return "redirect:/login";  // 예외 상황 대비
+    	}
+    	
+    	//"redirect:" → Spring한테 주는 신호. 
+    	//main → 이동할 주소 (컨트롤러의 /main 매핑)
+    	//?signupSuccess=true → URL 뒤에 붙는 파라미터. "회원가입 성공했다"는 신호를 전달하는 용도
     }
 
     
@@ -62,17 +80,14 @@ public class LoginController {
         return "productRegistration"; // sellerpage.jsp 를 보여줌
     }
     @PostMapping("/login")
-    public String loginProcess(@RequestParam("userId") String userId, 
-                               @RequestParam("userPw") String userPw, 
+    public String loginProcess(@RequestParam("memId") String memId, 
+                               @RequestParam("memPw") String memPw, 
                                Model model,
                                HttpServletResponse response) throws IOException {
-    	
-    	
-    	
-    	
+
     	
 	    	// Service를 통해 DB 검증 및 회원 정보(memCode 포함) 가져오기
-	        MemberDTO member = memberService.authenticate(userId, userPw);
+	        MemberDTO member = memberService.authenticate(memId, memPw);
 	        
 	        if (member == null) {
 	        	response.setContentType("text/html; charset=utf-8");

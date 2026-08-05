@@ -24,8 +24,8 @@
       <div class="field-box">
         <div class="field-label">ID:</div>
         <div class="address-row">
-          <input class="field-input addr-input" type="text" id="uid"  name="userId" placeholder="아이디를 입력하세요" maxlength="12"/>
-          <button type="button" class="addr-btn"  onclick="checkIdDuplicate()" >아이디 중복 검사</button>
+          <input class="field-input addr-input" type="text" id="uid"  name="memId" placeholder="Please enter your ID." maxlength="12"/>
+          <button type="button" class="addr-btn"  onclick="checkIdDuplicate()" >Check ID</button>
         </div>
       </div>
     </div>
@@ -33,24 +33,33 @@
     <div class="field">
       <div class="field-box">
         <div class="field-label">PW:</div>
-        <input class="field-input" type="password" id="pw"  name="userPw" placeholder="비밀번호를 입력하세요" maxlength="12"/>
+        <input class="field-input" type="password" id="pw"  name="memPw" placeholder="Please enter your password." maxlength="12"/>
       </div>
     </div>
 
     <div class="field">
       <div class="field-box">
         <div class="field-label">CONFIRM PW:</div>
-        <input class="field-input" type="password" id="cpw" name="confirmPw" placeholder="비밀번호를 다시 입력하세요" maxlength="12"/>
+        <input class="field-input" type="password" id="cpw" name="confirmPw" placeholder="Please re-enter your password." maxlength="12"/>
       </div>
     </div>
 
     <div class="field">
       <div class="field-box">
         <div class="field-label">NAME:</div>
-        <input class="field-input" type="text" id="uname" name="userName" placeholder="이름을 입력하세요" maxlength="9"/>
+        <input class="field-input" type="text" id="uname" name="memName" placeholder="Please enter your name." maxlength="9"/>
       </div>
     </div>
-    
+    <div class="field">
+  	  <div class="field-box">
+    	<div class="field-label">TYPE:</div>
+    	<select class="field-input" id="memType" name="memCode">
+      		<option value="" disabled selected>Please select a type.</option>
+      		<option value="1">Buyer</option>
+      		<option value="2">Seller</option>
+    	</select>
+      </div>
+	</div>
     <div class="field">
       <div class="field-box">
         <div class="field-label">PHONENUMBER:</div>
@@ -61,7 +70,7 @@
     <div class="field">
       <div class="field-box">
         <div class="field-label">EMAIL:</div>
-        <input class="field-input" type="text" id="mail" name="emailId" placeholder="이메일을 입력하세요" class="check"/>
+        <input class="field-input" type="text" id="mail" name="emailId" placeholder="Please enter your email." class="check"/>
       </div>
     </div>
 
@@ -69,8 +78,8 @@
 	  <div class="field-box">
 	    <div class="field-label">POST CODE:</div>
 	    <div class="address-row">
-	      <input class="field-input addr-input" type="text" id="sample4_postcode" placeholder="우편번호" readonly />
-	      <button type="button" class="addr-btn" onclick="sample4_execDaumPostcode()">찾기</button>
+	      <input class="field-input addr-input" type="text" id="sample4_postcode" name="postNum" placeholder="POST CODE" readonly />
+	      <button type="button" class="addr-btn" onclick="sample4_execDaumPostcode()">Find</button>
 	    </div>
 	  </div>
 	</div>
@@ -78,7 +87,7 @@
 <div class="field">
   <div class="field-box">
   <div class="field-label">ROAD ADDRESS:</div>
-    <input class="field-input" type="text" id="sample4_roadAddress" name="roadAddress" placeholder="도로명주소" readonly />
+    <input class="field-input" type="text" id="sample4_roadAddress" name="roadAddress" placeholder="ROAD ADDRESS" readonly />
   </div>
 </div>
 
@@ -86,7 +95,7 @@
     <div class="field">
       <div class="field-box">
       <div class="field-label">ADDRESS DETAIL:</div>
-        <input class="field-input" type="text" name="addressDetail" placeholder="상세 주소" maxlength="11"/>
+        <input class="field-input" type="text" name="addressDetail" placeholder="ADDRESS DETAIL" maxlength="11"/>
       </div>
     </div>
     <div class="btn-row">
@@ -100,7 +109,7 @@
     </button>
     <button type="submit" class="star-btn">
          <svg viewBox="0 0 100 128" preserveAspectRatio="none"><path d="M50 2 C52 40 55 58 98 64 C55 70 52 88 50 126 C48 88 45 70 2 64 C45 58 48 40 50 2 Z"/></svg>
-        <span class="star-label">SIGN UP</span>
+        <span class="star-label" >SIGN UP</span>
     </button>
 </div>
     <script>
@@ -108,63 +117,80 @@
     function Validation(){
     	//변수에 저장
     	
+    	/*
+    	1. insert 데이터 입력
+    	2. 암호화/복호화 처리
+    	3. forgot id/pw
+    	4. MYPAGE
+    	*/
+    	
     	var uid = document.getElementById("uid");
     	var pw = document.getElementById("pw");
     	var cpw = document.getElementById("cpw");
     	var mail = document.getElementById("mail");
     	var uname = document.getElementById("uname");
         var number = document.getElementById("number");
+        var memType =document.getElementById("memType");
+        
+        
         
         if(!checkEngNumber(uid.value)){
-    		alert("영문 대소문자, 숫자만 입력하세요");
+    		alert("Letters and numbers only.");
     		uid.focus();
     		return false;
     	}  
+        
 
         if(pw.value.length <4){
-        	alert("비밀번호를 4글자 이상 입력하세요.");
+        	alert("Please enter a password with at least 4 characters.");
          	   pw.focus();
          	   return false;
             }else if(pw.value == uid.value){
-                alert("아이디와 동일한 비밀번호를 사용할 수 없습니다.");
+                alert("You cannot use the same password as your ID.");
                 pw.focus();
                 return false;
             }
         if(cpw.value !== pw.value){
-            alert("비밀번호와 동일하지 않습니다.");
+            alert("Passwords do not match.");
             cpw.focus();
+            return false;
+        }
+        if(uname.value == ""){
+          	 alert("Please enter your name.");
+          	 uname.focus();
+          	 return false;
+           }else if(!checkKorEng(uname.value)){
+          	 alert("Please enter Korean or English characters only.")
+          	 uname.focus();
+          	 return false;
+        }
+        if(memType.value ==''){
+        	alert("Please select a type.");
+            memType.focus();
             return false;
         }
         //메일주소확인 
         if(mail.value.length == 0){
-       	 alert("메일주소를 입력하세요.")
+       	 alert("Please enter your email address.")
        	 mail.focus();
        	 return false;
         }else if(mail.value.indexOf("@") == -1 || mail.value.indexOf(".") == -1 || mail.value.length <=5){
         	//@가 없다는 뜻으로 -1
-            alert("잘못된 이메일 형식입니다.");
+            alert("Invalid email format.");
             mail.focus();
             return false;
         }
-        if(uname.value == ""){
-       	 alert("이름을 입력하세요.");
-       	 uname.focus();
-       	 return false;
-        }else if(!checkKorEng(uname.value)){
-       	 alert("한글,영어만 입력하세요.")
-       	 uname.focus();
-       	 return false;
-        }
+        
         if(number.value.length == 0){
-            alert("전화번호를 입력하세요.")
+            alert("Please enter your phone number.")
             number.focus();
             return false;
         }else if(!checkOnlyNumber(number.value)){
-            alert("숫자만 입력하세요. (- 없이 입력)")
+            alert("Please enter numbers only (without dashes).")
             number.focus();
             return false;
         }else if(number.value.length < 10 || number.value.length > 11){
-            alert("전화번호 자리수를 확인하세요.")
+            alert("Please check the number of digits in your phone number.")
             number.focus();
             return false;
         }
@@ -178,7 +204,7 @@
 	    var uid = document.getElementById("uid").value;
 	    
 	    if(uid.length < 4){
-	        alert("아이디를 4글자 이상 입력하세요.");
+	        alert("Please enter an ID with at least 4 characters.");
 	        document.getElementById("uid").value = '';
 	        return;
 	    }
@@ -188,10 +214,10 @@
 	        .then(response => response.text())
 	        .then(result => {
 	            if(result === "1"){
-	                alert("이미 사용 중인 아이디입니다.");
+	                alert("This ID is already in use.");
 	                document.getElementById("uid").value = '';
 	            } else {
-	                alert("사용 가능한 아이디입니다.");
+	                alert("This ID is available.");
 	            }
 	        }); 
 	    }
@@ -268,6 +294,8 @@
             }
         }).open();
     }
+    
+   
     </script>
     
   </form>
