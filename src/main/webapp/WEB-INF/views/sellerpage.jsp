@@ -21,15 +21,16 @@
       <div class="nav-circles">
         <a href="${pageContext.request.contextPath}/buyer" class="nav-circle c-lavender">Buyer<br>Page</a>
         <a href="${pageContext.request.contextPath}/productRegistration" class="nav-circle c-lime">Product<br>Registration</a>
-        <a href="#" class="nav-circle c-cyan">My<br>Page</a>
+        <a href="${pageContext.request.contextPath}/mypage" class="nav-circle c-cyan">My<br>Page</a>
+        <a href="${pageContext.request.contextPath}/logout" class="nav-circle c-coral-outline">Log<br>out</a>
       </div>
     </div>
 	<!--
-		1. select 부분 보고 파악
+		1. select 부분 보고 파악 - o
 		2. buyerpage 삭제 , 수정 가능하게
 		3. 미리보기 이미지 보이게
-		4. 로그아웃 버튼 만들기
-		5. 
+		4. 로그아웃 버튼 만들기 - o
+		5. 경로 확인 후 수정
 	
 	  -->
     <div class="card-grid">
@@ -40,9 +41,9 @@
 	      	<a href="#" class="card-link" style="text-decoration: none; color: inherit;">
 		        <div class="card">
 		          <%-- 상품 이미지 (DB에 이미지 경로가 있다면 src에 넣고, 없다면 기본 썸네일 유지) --%>
-		          <div class="card-thumb" style="<c:if test='not empty product.imageUrl'>background: url('${pageContext.request.contextPath}${product.imageUrl}') center/cover no-repeat;</c:if>"></div>
-		          
-		          <%-- 상품 제목 및 설명 출력 --%>
+				  <%-- <div class="card-thumb" style="<c:if test='not empty product.product_picture'>background: url('${pageContext.request.contextPath}/resources/upload/${product.product_picture}') center/cover no-repeat;</c:if>"></div> --%>		          
+				  <div class="card-thumb" style="background: url('/resources/upload/${product.product_picture}') center/cover no-repeat;"></div>
+				  <%-- 상품 제목 및 설명 출력 --%>
 		          <div class="card-title">Title: <c:out value="${product.product_name}"/></div>
 		          <div class="card-desc">Description: <c:out value="${product.product_des}"/></div>
 		          <div class="card-price">Price: <c:out value="${product.product_price}"/></div>

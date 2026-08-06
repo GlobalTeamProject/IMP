@@ -70,6 +70,11 @@ public class RootConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        
+        // 2. 외부 업로드 폴더 매핑 추가 (이 코드를 추가하세요!)
+        // 브라우저에서 /resources/upload/** 로 요청하면 -> 실제 C:/upload/ 폴더의 파일을 보여줌
+        registry.addResourceHandler("/resources/upload/**")
+        		.addResourceLocations("file:///C:/upload/");
     }
     // 7. 파일 업로드를 위한 MultipartResolver 빈 등록
     @Bean

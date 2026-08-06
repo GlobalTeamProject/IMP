@@ -99,6 +99,7 @@ public class LoginController {
     	List<ProductDTO> list = productService.selectProduct();
     	model.addAttribute("productList",list);
     	
+    	
         return "sellerpage"; // sellerpage.jsp 를 보여줌
     }
     @GetMapping("/productRegistration")
@@ -153,5 +154,13 @@ public class LoginController {
 	        }
 	    	
 	    }
- 	}
+    @GetMapping("/logout")
+    public String logoutpage(HttpSession session, HttpServletRequest request) {
+    	session = request.getSession(false);
+    	if(session != null)
+    		session.invalidate();
+    	
+        return "redirect:/login";  // sellerpage.jsp 를 보여줌
+    }
+ }
  

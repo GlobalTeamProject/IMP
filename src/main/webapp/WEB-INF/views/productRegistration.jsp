@@ -73,8 +73,7 @@
             
             <nav class="top-nav">
                 <a href="${pageContext.request.contextPath}/seller" class="nav-circle c-purple">Buyer<br>Page</a>
-                <a href="${pageContext.request.contextPath}/productRegistration" class="nav-circle c-lime active">Product<br>Registration</a>
-                <a href="${pageContext.request.contextPath}/myPage" class="nav-circle c-skyblue">My<br>Page</a>
+                <a href="${pageContext.request.contextPath}/mypage" class="nav-circle c-skyblue">My<br>Page</a>
             </nav>
         </header>
 

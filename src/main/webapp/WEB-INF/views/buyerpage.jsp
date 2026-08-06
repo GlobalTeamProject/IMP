@@ -21,7 +21,8 @@
       <div class="nav-circles">
         <a href="${pageContext.request.contextPath}/seller" class="nav-circle c-lavender">Seller<br>page</a>
         <a href="#" class="nav-circle c-lime">Cart</a>
-        <a href="#" class="nav-circle c-cyan">My<br>Page</a>
+        <a href="${pageContext.request.contextPath}/mypage" class="nav-circle c-cyan">My<br>Page</a>
+        <a href="${pageContext.request.contextPath}/logout" class="nav-circle c-coral-outline">Log<br>out</a>
       </div>
     </div>
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,7 +50,8 @@ public class ProductController {
         
     	try {
             // 업로드할 실제 경로 지정 (예: 웹앱 내부의 upload 폴더)
-            String uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+            //String uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+    		String uploadPath = "C:/upload";
             
             
             // 서비스 호출을 통해 파일 저장 및 DB Insert 수행
@@ -62,10 +64,16 @@ public class ProductController {
         }
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<script>alert('Thank you for registering the inventory'); history.go(-2);</script>");
+        out.println("<script>alert('Thank you for registering the inventory');");
+        out.println("location.href='/seller';");
+        out.println("</script>");
         out.flush();
         response.flushBuffer();
         out.close();
     	return null;    
  	}
+    @GetMapping("/mypage")
+    public String myPage() {
+        return "mypage"; // mypage.jsp 를 보여줌
+    }
 }
