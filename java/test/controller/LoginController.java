@@ -162,5 +162,19 @@ public class LoginController {
     	
         return "redirect:/login";  // sellerpage.jsp 를 보여줌
     }
+    @GetMapping("/mypage")
+    public String myPage(HttpSession session,Model model) {
+    	
+    	String login = (String)session.getAttribute("memberId");
+    	if (login == null) {
+            return "redirect:/login"; // 로그인 페이지 주소로 변경
+        }
+    	MemberDTO member = memberService.selectMypage(login);
+    	
+    	
+    	model.addAttribute("memberId", member);
+    	
+    	return "mypage"; // mypage.jsp 를 보여줌
+    }
  }
  

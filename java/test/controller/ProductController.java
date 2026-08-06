@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.support.MultipartFilter;
 
 import test.mapper.MemberDTO;
 import test.mapper.ProductDTO;
+import test.service.MemberService;
 import test.service.ProductService;
 
 @Controller
@@ -24,6 +26,9 @@ public class ProductController {
 
 	@Autowired
     private ProductService productService;
+	@Autowired
+	private MemberService memberservice;
+	
 	
 	//product 등록 controller
     @PostMapping("/productRegisterAction")
@@ -72,8 +77,5 @@ public class ProductController {
         out.close();
     	return null;    
  	}
-    @GetMapping("/mypage")
-    public String myPage() {
-        return "mypage"; // mypage.jsp 를 보여줌
-    }
+    
 }

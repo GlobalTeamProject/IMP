@@ -9,4 +9,5 @@ public interface MemberMapper {
     void signUp(MemberDTO member);
     //void->리턴값없고 저장하면 끝
     //MemberDTO member-> 회원정보가 담긴 DTO를 받음
-}
+    MemberDTO selectMypage(String memId);
+}	

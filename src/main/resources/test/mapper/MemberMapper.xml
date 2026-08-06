@@ -27,6 +27,14 @@
         #{memId}, #{memCode}, #{memPw}, #{memName}, #{phoneNumber}, #{emailId}, #{postNum},#{roadAddress}, #{addressDetail}
     )
     </insert>
-     
+    <select id="selectMypage" resultType="test.mapper.MemberDTO">
+   		SELECT MEM_ID AS memId
+   		,MEM_PW AS memPw
+   		,MEM_CODE AS memCode
+   		,MEM_NAME AS memName
+   		FROM MEM
+   		WHERE 1=1
+   		AND MEM_ID = #{memId}
+   </select>
      
 </mapper>

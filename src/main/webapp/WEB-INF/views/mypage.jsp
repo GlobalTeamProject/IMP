@@ -21,10 +21,9 @@
 
             <!-- 네비게이션 버튼 영역 -->
             <nav class="nav-buttons">
-                <a href="${pageContext.request.contextPath}/seller/main" class="nav-btn seller-btn">Seller<br>page</a>
-                <a href="${pageContext.request.contextPath}/product/register" class="nav-btn reg-btn">Product<br>Registration</a>
-                <a href="${pageContext.request.contextPath}/member/mypage" class="nav-btn my-btn">My<br>Page</a>
-                <a href="${pageContext.request.contextPath}/member/logout" class="nav-btn logout-btn">Log<br>out</a>
+                <a href="${pageContext.request.contextPath}/seller" class="nav-btn seller-btn">Seller<br>page</a>
+                <a href="${pageContext.request.contextPath}/productRegistration" class="nav-btn reg-btn">Product<br>Registration</a>
+                <a href="${pageContext.request.contextPath}/logout" class="nav-btn logout-btn">Log<br>out</a>
             </nav>
         </header>
 
@@ -33,12 +32,17 @@
             
             <!-- 왼쪽: 회원정보 수정 섹션 -->
             <div class="card">
-                <h2>Profile Settings</h2>
+                <!-- 제목과 탈퇴 버튼을 감싸는 헤더 영역 -->
+                <div class="card-header-flex">
+                    <h2>Profile Settings</h2>
+                    <a href="${pageContext.request.contextPath}/member/delete" class="delete-account-btn" onclick="return confirm('정말 탈퇴하시겠습니까?');">Delete Account</a>
+                </div>
+
                 <form action="${pageContext.request.contextPath}/member/update" method="post">
                     
                     <div class="input-group">
-                        <label>ID (Email / Username)</label>
-                        <input type="text" name="member_id" value="${loginUser.member_id}" readonly class="readonly-input">
+                        <label>ID</label>
+                        <input type="text" name="member_id" value="${memberId.memId}" readonly class="readonly-input">
                     </div>
 
                     <div class="input-group">
