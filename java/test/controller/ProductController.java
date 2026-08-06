@@ -1,5 +1,6 @@
 package test.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class ProductController {
 	
 	//product 등록 controller
     @PostMapping("/productRegisterAction")
-    public String productRegisterAction(ProductDTO product, HttpServletRequest request,HttpServletResponse response){
+    public String productRegisterAction(ProductDTO product, HttpServletRequest request,HttpServletResponse response) throws IOException{
     	HttpSession session = request.getSession();
     	
     	//System.out.println(product.getProduct_name());
@@ -44,6 +45,8 @@ public class ProductController {
         product.setMemCode(memCode);
         product.setMemId(memId);
         
+
+        
     	try {
             // 업로드할 실제 경로 지정 (예: 웹앱 내부의 upload 폴더)
             String uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload");
@@ -52,13 +55,17 @@ public class ProductController {
             // 서비스 호출을 통해 파일 저장 및 DB Insert 수행
             productService.registerProduct(product, uploadPath);
             
-            //response.setContentType("text/html; charset=UTF-8");
-            //PrintWriter out = response.getWriter();
-            //out.println("<script>alert('Thank you for registering the inventory');</script>");
+
             
         } catch (Exception e) {
             e.printStackTrace();
         }
-    	return "redirect:/productRegistration";    
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('Thank you for registering the inventory'); history.go(-2);</script>");
+        out.flush();
+        response.flushBuffer();
+        out.close();
+    	return null;    
  	}
 }

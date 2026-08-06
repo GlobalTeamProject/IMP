@@ -27,4 +27,12 @@
             ,#{product_picture}
         )
     </insert>
+    <select id="selectProduct" resultType="test.mapper.ProductDTO">
+    	SELECT PRODUCT_ID AS product_id
+    	,PRODUCT_NAME AS product_name
+    	,PRODUCT_DES AS product_des
+    	,PRODUCT_PICTURE AS product_picture
+    	,PRODUCT_PRICE 	AS product_price
+    	FROM PRODUCT
+    </select>
 </mapper>

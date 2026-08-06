@@ -77,5 +77,10 @@
 	    <artifactId>commons-fileupload</artifactId>
 	    <version>1.4</version> <!-- 또는 사용하는 프로젝트 버전에 맞는 버전 -->
 	</dependency>
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
   </dependencies>
 </project>

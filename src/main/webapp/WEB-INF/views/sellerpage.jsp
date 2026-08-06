@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,11 +24,42 @@
         <a href="#" class="nav-circle c-cyan">My<br>Page</a>
       </div>
     </div>
-
+	<!--
+		1. select 부분 보고 파악
+		2. buyerpage 삭제 , 수정 가능하게
+		3. 미리보기 이미지 보이게
+		4. 로그아웃 버튼 만들기
+		5. 
+	
+	  -->
     <div class="card-grid">
-      <div class="card"><div class="card-thumb"></div><div class="card-title">Title:</div><div class="card-desc">Description:</div></div>
-      
-    </div>
+	  <%-- 1. 데이터(productList)가 존재하는 경우 --%>
+	  <c:choose>
+	    <c:when test="${not empty productList}">
+	      <c:forEach var="product" items="${productList}" varStatus="status">
+	      	<a href="#" class="card-link" style="text-decoration: none; color: inherit;">
+		        <div class="card">
+		          <%-- 상품 이미지 (DB에 이미지 경로가 있다면 src에 넣고, 없다면 기본 썸네일 유지) --%>
+		          <div class="card-thumb" style="<c:if test='not empty product.imageUrl'>background: url('${pageContext.request.contextPath}${product.imageUrl}') center/cover no-repeat;</c:if>"></div>
+		          
+		          <%-- 상품 제목 및 설명 출력 --%>
+		          <div class="card-title">Title: <c:out value="${product.product_name}"/></div>
+		          <div class="card-desc">Description: <c:out value="${product.product_des}"/></div>
+		          <div class="card-price">Price: <c:out value="${product.product_price}"/></div>
+		        </div>
+		  	</a>
+	      </c:forEach>
+	    </c:when>
+	    
+	    <%-- 2. 데이터가 없는 경우 (등록된 상품이 없을 때) --%>
+	    <c:otherwise>
+	      <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+	        <div class="card-title" style="justify-content: center;">등록된 상품이 없습니다.</div>
+	        <div class="card-desc">새로운 상품을 등록해 보세요!</div>
+	      </div>
+	    </c:otherwise>
+	  </c:choose>
+	</div>
   </section>
 
 </body>

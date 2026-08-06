@@ -159,7 +159,11 @@ body {
   color: var(--lavender-dark);
   opacity: 0.8;
 }
-
+.card-price{
+  font-size: 12px;
+  color: #ff6b6b;
+  opacity: 0.8;
+}
 /* 마지막 카드(Create Listing 자리)만 세로로 좁게, 와이어프레임2와 동일 */
 .card-grid .card:last-child .card-thumb {
   aspect-ratio: 3 / 4;

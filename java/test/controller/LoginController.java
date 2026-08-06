@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import test.mapper.MemberDTO;
+import test.mapper.ProductDTO;
 import test.service.MemberService;
+import test.service.ProductService;
 
 
 
@@ -27,7 +30,8 @@ public class LoginController {
 
 	@Autowired
     private MemberService memberService;
-	
+	@Autowired
+	private ProductService productService;
 	
 /* @RequestMapping은 Class와 Method에 붙일 수 있고 @GetMapping, @PostMapping, @PutMapping, @DeleteMapping들은 Method에만 붙일 수 있다.*/
     @RequestMapping("/login")
@@ -91,7 +95,10 @@ public class LoginController {
     }
 
     @GetMapping("/seller")
-    public String sellerPage() {
+    public String sellerPage(Model model) {
+    	List<ProductDTO> list = productService.selectProduct();
+    	model.addAttribute("productList",list);
+    	
         return "sellerpage"; // sellerpage.jsp 를 보여줌
     }
     @GetMapping("/productRegistration")

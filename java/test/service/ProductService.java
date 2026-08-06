@@ -2,6 +2,7 @@ package test.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,9 @@ public class ProductService {
 	        //System.out.println(product.getProduct_name());
 	        // 3. Mapper 호출
 	        return productMapper.insertProduct(product);
+	}
+	
+	public List<ProductDTO> selectProduct() {
+		return productMapper.selectProduct();
 	}
 }

@@ -3,7 +3,7 @@ package test.mapper;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductDTO {
-	
+	private String product_id;
 	private String product_price;
 	private String product_name;
 	private String product_qty;
